@@ -50,7 +50,7 @@ def get_credentials():
         print('Storing credentials to ' + credential_path)
     return credentials
 
-def main():
+def main(date_to_add):
     """Shows basic usage of the Google Calendar API.
 
     Creates a Google Calendar API service object and outputs a list of the next
@@ -78,20 +78,13 @@ def main():
       'location': 'TEST LOCATION',
       'description': 'TEST DESCRIPTION',
       'start': {
-        'dateTime': '2018-02-24T09:00:00-07:00',
+        'dateTime': date_to_add + event_start_time,
         'timeZone': 'GMT',
       },
       'end': {
-        'dateTime': '2018-02-25T17:00:00-07:00',
+        'dateTime': '2018-03-02T17:00:00',
         'timeZone': 'GMT',
       },
-      'recurrence': [
-        'RRULE:FREQ=DAILY;COUNT=2'
-      ],
-      'attendees': [
-        {'email': 'lpage@example.com'},
-        {'email': 'sbrin@example.com'},
-      ],
       'reminders': {
         'useDefault': False,
         'overrides': [
@@ -103,9 +96,19 @@ def main():
 
     event = service.events().insert(calendarId='primary', body=event).execute()
     print (event.get('htmlLink'))
-    print "Event(s) successfully added to calendar"
+    print ("Event(s) added successfully \n")
 
+dateList = [
+'2018-02-24',
+'2018-02-27',
+'2018-03-01'
+]
+
+event_start_time = 'T09:00:00'
+
+print ("date =", datetime.isoformat())
 
 
 if __name__ == '__main__':
-    main()
+    for i in range(len(dateList)):
+        main(dateList[i])
