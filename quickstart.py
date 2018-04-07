@@ -82,7 +82,7 @@ def main(date_to_add):
         'timeZone': 'GMT',
       },
       'end': {
-        'dateTime': '2018-03-02T17:00:00',
+        'dateTime': date_to_add + event_end_time,
         'timeZone': 'GMT',
       },
       'reminders': {
@@ -105,8 +105,7 @@ dateList = [
 ]
 
 event_start_time = 'T09:00:00'
-
-print ("date =", datetime.isoformat())
+event_end_time = 'T17:00:00'
 
 
 if __name__ == '__main__':
